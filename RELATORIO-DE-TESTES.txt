@@ -1,0 +1,73 @@
+RELATORIO DE TESTES - Conecta Web
+Executado em: 2026-10-25 01:55 UTC | Node v22.22.2 | ambiente sem rede (npm install impossivel)
+
+=== Verificacao de sintaxe (npm run check) ===
+ok  lib/config.js
+ok  lib/rateLimit.js
+ok  lib/rooms.js
+ok  lib/security.js
+ok  lib/signaling.js
+ok  lib/validation.js
+ok  public/app.js
+ok  public/js/call.js
+ok  public/js/media.js
+ok  public/js/peers.js
+ok  public/js/settings.js
+ok  public/js/socket.js
+ok  public/js/store.js
+ok  public/js/ui.js
+ok  scripts/check-syntax.js
+ok  server.js
+ok  tests/client-socket.test.js
+ok  tests/helpers/fakeIo.js
+ok  tests/rooms.test.js
+ok  tests/server.test.js
+ok  tests/signaling.test.js
+ok  tests/validation.test.js
+
+22 arquivos verificados, 0 com erro.
+
+=== Testes automatizados (node --test) ===
+✔ getSocket antes de iniciar lança erro claro (não TypeError de null) (5.968245ms)
+✔ initSocket sem a biblioteca Socket.IO explica o problema (1.448534ms)
+✔ waitForConnection espera a conexão e só então resolve (23.050113ms)
+✔ waitForConnection falha com mensagem clara no tempo limite (32.116271ms)
+✔ request aguarda a conexão, envia e devolve o ack; trata timeout do ack (13.078236ms)
+✔ criar, entrar e sair; sala vazia é removida (3.845161ms)
+✔ rejeita sala inexistente, lotada e entrada duplicada (0.441599ms)
+✔ limitador bloqueia após o máximo e libera após a janela (70.905806ms)
+✔ configuração: padrões, limites e TURN só com credenciais completas (0.659022ms)
+﹣ servidor + Socket.IO reais (1.200169ms) # dependências ausentes (express, socket.io, socket.io-client): execute npm install
+✔ criar sala devolve código válido e o criador fica na sala (4.142442ms)
+✔ entrar em sala: recebe lista e os demais são avisados (1.099858ms)
+✔ rejeita código inválido, sala inexistente e nome inválido (0.577933ms)
+✔ limite de participantes por sala (0.753695ms)
+✔ não permite entrar em duas salas com o mesmo socket (0.975329ms)
+✔ sinalização é entregue apenas ao destinatário da mesma sala (1.07022ms)
+✔ rejeita sinais de quem não está em sala, para outra sala e inválidos (0.716529ms)
+✔ sair e desconectar removem o usuário, avisam os demais e limpam salas vazias (0.803644ms)
+✔ limite de criação/entrada por IP (0.577889ms)
+✔ eventos sem ack ou com payload estranho não derrubam o servidor (0.728311ms)
+✔ códigos de sala gerados são válidos e únicos (30.963397ms)
+✔ normalizeRoomCode aceita minúsculas/hífens e rejeita lixo (0.530621ms)
+✔ sanitizeName remove HTML/controles e limita tamanho (0.387385ms)
+✔ validateSignal aceita oferta/resposta/candidato válidos (0.458499ms)
+✔ validateSignal rejeita payloads malformados ou grandes (0.512223ms)
+✔ validateSignal descarta campos extras (não repassa lixo) (1.033411ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 1
+ℹ todo 0
+ℹ duration_ms 576.596561
+
+=== O QUE NAO FOI VALIDADO ===
+- tests/server.test.js (Express + Socket.IO reais + HTTP): IGNORADO. As dependencias nao puderam ser instaladas
+  (sem acesso a rede). Rode TESTAR-CONNECTA-WEB.bat apos o npm install para executa-lo.
+- O servidor (server.js) so teve a sintaxe verificada; nao foi iniciado neste ambiente.
+- Camera, microfone, audio, video, compartilhamento de tela, WebRTC entre navegadores e redes diferentes: NAO testados.
+- Interface (HTML/CSS/JS do navegador): sintaxe verificada; nao foi aberta em navegador nem avaliada visualmente.
+- peers.js (negociacao WebRTC) nao tem teste automatizado.
+- Arquivos .bat: nao executados (ambiente Linux).

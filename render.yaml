@@ -1,0 +1,23 @@
+# Exemplo para o Render (https://render.com). Revise plano/preço no painel antes de publicar.
+services:
+  - type: web
+    name: conecta-web
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: TRUST_PROXY
+        value: "true"
+      - key: MAX_PARTICIPANTS
+        value: "6"
+      - key: STUN_URLS
+        value: stun:stun.l.google.com:19302
+      - key: TURN_URLS
+        sync: false
+      - key: TURN_USERNAME
+        sync: false
+      - key: TURN_CREDENTIAL
+        sync: false
